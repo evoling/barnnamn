@@ -21,5 +21,12 @@ barnnamn <- bind_rows(girls, boys) %>%
   rename(name=Namn, n=count) %>%
   arrange(year, name)
 
-#View(barnnamn)
+# To do this correctly we actually need the total number of births/sex/year
+totals <- barnnamn %>% group_by(year, sex) %>% summarise(total=sum(n))
+
+barnnamn <- barnnamn %>%
+  left_join(totals) %>%
+  mutate(prop=n/total) %>%
+  select(year, sex, name, n, prop)
+
 use_data(barnnamn, overwrite=TRUE)

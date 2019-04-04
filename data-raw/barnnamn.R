@@ -22,7 +22,22 @@ barnnamn <- bind_rows(girls, boys) %>%
   arrange(year, name)
 
 # To do this correctly we actually need the total number of births/sex/year
-totals <- barnnamn %>% group_by(year, sex) %>% summarise(total=sum(n))
+# totals <- barnnamn %>% group_by(year, sex) %>% summarise(total=sum(n))
+totals <- read_excel("data-raw/BE0101E2.xlsx",
+                     col_types = c("skip", "skip", "skip",
+                                   "skip", "skip", "text", "numeric",
+                                   "numeric", "numeric", "numeric",
+                                   "numeric", "numeric", "numeric",
+                                   "numeric", "numeric", "numeric",
+                                   "numeric", "numeric", "numeric",
+                                   "numeric", "numeric", "numeric",
+                                   "numeric", "numeric", "numeric",
+                                   "numeric", "numeric"), skip = 2,
+                     n_max = 2) %>%
+  gather(year, total, as.character(1998:2018)) %>%
+  rename(sex=X__1) %>%
+  mutate(year=as.integer(year), total=as.integer(total)) %>%
+  mutate(sex=if_else(sex=="kvinnor", "F", "M"))
 
 barnnamn <- barnnamn %>%
   left_join(totals) %>%

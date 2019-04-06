@@ -6,6 +6,7 @@ Author: Michael Dunn
 Maintainer: Michael Dunn <michael.dunn@lingfil.uu.se>
 Description: A list of Swedish given names from the Central Statistical Bureau, 
     SCB. This contains all names used at least 10 times in a year.
+Depends: R (>= 3.1.0)
 License: CC0
 Encoding: UTF-8
 LazyData: true

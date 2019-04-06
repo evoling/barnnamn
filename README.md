@@ -4,7 +4,8 @@ Swedish babynames
 
 This is a Swedish equivalent to the babynames package. Anything you do with babynames you should be able to do with barnnamn instead. The two datasets have the same columns in the same order, so they use also be easy to combine:
 
-```{R}
+```{R message=FALSE}
+library(tidyverse)
 library(barnnamn)
 library(babynames)
 

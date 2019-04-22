@@ -14,5 +14,6 @@ RoxygenNote: 6.1.1
 Suggests: knitr,
     rmarkdown,
     tidyverse,
+    babynames,
     barnnamn
 VignetteBuilder: knitr

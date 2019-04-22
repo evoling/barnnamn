@@ -4,7 +4,7 @@ author: "Michael Dunn"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteIndexEntry{barnnamn}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -12,23 +12,21 @@ vignette: >
 ```{r setup, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
-  comment = "#>",
-  fig.width="100%"
+  comment = "#>"
   )
+library(tidyverse)
+library(barnnamn)
+library(babynames)
 ```
 
 Swedish babynames
 
 This is a Swedish equivalent to the babynames package. Anything you do with babynames you should be able to do with barnnamn instead. The two datasets have the same columns in the same order, so they use also be easy to combine:
 
-```{R message=FALSE}
-library(tidyverse)
-library(barnnamn)
-library(babynames)
-
+```{R}
 # annotate each dataset with country of origin
-barnnamn$country = "Sweden"
-babynames$country = "USA"
+barnnamn$country <- "Sweden"
+babynames$country <- "USA"
 
 # join them and plot something for the years for which both datasets have data
 babynames %>% 

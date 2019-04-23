@@ -33,7 +33,14 @@ babynames %>%
   bind_rows(barnnamn) %>% 
   filter(year >= 1998, year <= 2015) %>%
   filter(name=="Anna", sex=="F") %>%
-  ggplot(aes(x=year, y=prop, linetype=country)) + geom_line()
+  ggplot(aes(x=year, y=prop, linetype=country)) + 
+  geom_line() +
+  theme(legend.justification=c(1, 1), 
+        legend.position=c(0.95, 0.95),  
+        legend.background = element_blank(),
+        legend.key = element_blank()) +
+  labs(title="Girls named Anna in US and Sweden")
+
 ```
 
 The Swedish names data comes from the Statistiska centralbyrån (Central Statistical Bureau), which provides data from 1998 to 2018.

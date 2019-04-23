@@ -5,3 +5,4 @@
 .DS_Store
 .backup
 inst/doc
+*.swp

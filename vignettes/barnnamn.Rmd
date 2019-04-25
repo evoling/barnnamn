@@ -10,11 +10,8 @@ vignette: >
 ---
 
 ```{r setup, include = FALSE}
-knitr::opts_chunk$set(
-  collapse = TRUE,
-  comment = "#>"
-  )
-library(tidyverse)
+library(ggplot2)
+library(dplyr)
 library(barnnamn)
 library(babynames)
 ```
@@ -46,7 +43,6 @@ babynames %>%
         legend.background = element_blank(),
         legend.key = element_blank()) +
   labs(title="Girls named Anna")
-
 ```
 
 The Swedish names data comes from the Statistiska centralbyrån (Central Statistical Bureau), which provides data from 1998 to 2018. Scripts to process the downloaded data can be found in the [source repository](https://github.com/evoling/barnnamn/) for this package 

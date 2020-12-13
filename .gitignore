@@ -8,3 +8,4 @@ doc
 .backup
 inst/doc
 *.swp
+~*.xlsx

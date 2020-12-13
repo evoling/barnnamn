@@ -3,20 +3,25 @@ library(dplyr)
 library(devtools)
 library(readxl)
 library(testthat)
+library(tidyr)
 # This file creates the rData binary in the data directory
 
 # Excel files from the Swedish Central Statistics Agency, SCB
 # http://www.scb.se/hitta-statistik/statistik-efter-amne/befolkning/amnesovergripande-statistik/namnstatistik/
 
-girls <- read_excel("data-raw/be0001namntab11-2018.xlsx",
+
+# Section name: "Nyfödda – Tilltalsnamn, alfabetisk översikt"
+
+
+girls <- read_excel("data-raw/be0001namntab11_2019.xlsx",
              sheet = "Flickor",
              skip = 4)  %>% mutate(sex = "F")
-boys <- read_excel("data-raw/be0001namntab12-2018.xlsx",
+boys <- read_excel("data-raw/be0001namntab12_2019.xlsx",
              sheet = "Pojkar",
              skip = 4)  %>% mutate(sex = "M")
 expect_equal(names(girls), names(boys))
 barnnamn <- bind_rows(girls, boys) %>%
-  gather(year, count, as.character(1998:2018)) %>%
+  pivot_longer(as.character(1998:2019), names_to="year", values_to="count") %>%
   mutate(year=as.integer(year), count=suppressWarnings(as.integer(count))) %>%
   filter(!is.na(count)) %>%
   rename(name=Namn, n=count) %>%
@@ -24,9 +29,18 @@ barnnamn <- bind_rows(girls, boys) %>%
 
 # To do this correctly we actually need the total number of births/sex/year
 # totals <- barnnamn %>% group_by(year, sex) %>% summarise(total=sum(n))
-totals <- read_excel("data-raw/BE0101E2.xlsx",
+
+# The following file was downloaded from the following:
+# page name: Befolkningsutvecklingen i riket efter kön. År 1749 - 2019
+# link: http://www.statistikdatabasen.scb.se/pxweb/sv/ssd/START__BE__BE0101__BE0101G/BefUtvKon1749/
+# query options:
+#     region: riket
+#     moderns ålder: (no selection)
+#     kön: män, kvinnor
+#     år: 1998 to 2019
+totals <- read_excel("data-raw/BE0101E2_20201213-170726.xlsx",
                      col_types = c("skip", "skip", "skip",
-                                   "skip", "skip", "text", "numeric",
+                                   "text", "numeric", "numeric",
                                    "numeric", "numeric", "numeric",
                                    "numeric", "numeric", "numeric",
                                    "numeric", "numeric", "numeric",
@@ -35,8 +49,8 @@ totals <- read_excel("data-raw/BE0101E2.xlsx",
                                    "numeric", "numeric", "numeric",
                                    "numeric", "numeric"), skip = 2,
                      n_max = 2) %>%
-  gather(year, total, as.character(1998:2018)) %>%
-  rename(sex=X__1) %>%
+  pivot_longer(as.character(1998:2019), names_to="year", values_to="total") %>%
+  rename(sex=`...1`) %>%
   mutate(year=as.integer(year), total=as.integer(total)) %>%
   mutate(sex=if_else(sex=="kvinnor", "F", "M"))
 

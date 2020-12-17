@@ -6,7 +6,7 @@ library(testthat)
 library(tidyr)
 # This file creates the rData binary in the data directory
 
-# Excel files from the Swedish Central Statistics Agency, SCB
+# Excel files from the Swedish Central Statistical Bureau, SCB
 # http://www.scb.se/hitta-statistik/statistik-efter-amne/befolkning/amnesovergripande-statistik/namnstatistik/
 
 

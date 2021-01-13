@@ -1,7 +1,7 @@
 Package: barnnamn
 Type: Package
-Title: Swedish Baby Names by Year, 1998-2018
-Version: 0.1.0
+Title: Swedish Baby Names by Year, 1998-2020
+Version: 0.1.1
 Author: Michael Dunn
 Maintainer: Michael Dunn <michael.dunn@lingfil.uu.se>
 Description: A list of Swedish given names from the Central Statistical Bureau, 

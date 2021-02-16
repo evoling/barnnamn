@@ -32,5 +32,6 @@ To build the new data update `data-raw/barnnamn.R`:
 
 - Update the file names for the three xlsx format data files
 - Fix the year range in the `pivot_longer` function
+- Check that the sheet names and column names are correct (they have been variously "Flickor" and "Flickor - Girls", "Namn" and "Namn/Name", etc.) and that the right number of lines are being skipped from the top of the file.
 - Check that the `col_types` argument is correct in the `read_excel` function acting on the `BE0101E3` demographic data table (format might change slightly)
 - Tidy up by removing old raw data files

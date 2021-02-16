@@ -13,18 +13,18 @@ library(tidyr)
 # Section name: "Nyfödda – Tilltalsnamn, alfabetisk översikt"
 
 
-girls <- read_excel("data-raw/be0001namntab11_2019.xlsx",
-             sheet = "Flickor",
-             skip = 4)  %>% mutate(sex = "F")
-boys <- read_excel("data-raw/be0001namntab12_2019.xlsx",
-             sheet = "Pojkar",
-             skip = 4)  %>% mutate(sex = "M")
+girls <- read_excel("data-raw/be0001namntab11-2020.xlsx",
+             sheet = "Flickor - Girls",
+             skip = 8)  %>% mutate(sex = "F")
+boys <- read_excel("data-raw/be0001namntab12-2020.xlsx",
+             sheet = "Pojkar - Boys",
+             skip = 8)  %>% mutate(sex = "M")
 expect_equal(names(girls), names(boys))
 barnnamn <- bind_rows(girls, boys) %>%
-  pivot_longer(as.character(1998:2019), names_to="year", values_to="count") %>%
+  pivot_longer(as.character(1998:2020), names_to="year", values_to="count") %>%
   mutate(year=as.integer(year), count=suppressWarnings(as.integer(count))) %>%
   filter(!is.na(count)) %>%
-  rename(name=Namn, n=count) %>%
+  rename(name=`Namn / Name`, n=count) %>%
   arrange(year, name)
 
 # To do this correctly we actually need the total number of births/sex/year

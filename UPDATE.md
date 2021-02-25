@@ -24,7 +24,7 @@ moderns ålder: (no selection)
 kön: män, kvinnor  
 år: 1998 to most most recent
 
-My 2019 data file download had the name `BE0101E2_20201213-170726.xlsx` (`BE0101E2` element is the identifier of the source table, the next bit is the date of download, then something else).
+Save as xslx format to the data-raw directory. The 2021 file is `data-raw/0000001H_20210225-152425.xlsx`
 
 ##4. Update data-raw/barnnamn.R
 
@@ -33,5 +33,5 @@ To build the new data update `data-raw/barnnamn.R`:
 - Update the file names for the three xlsx format data files
 - Fix the year range in the `pivot_longer` function
 - Check that the sheet names and column names are correct (they have been variously "Flickor" and "Flickor - Girls", "Namn" and "Namn/Name", etc.) and that the right number of lines are being skipped from the top of the file.
-- Check that the `col_types` argument is correct in the `read_excel` function acting on the `BE0101E3` demographic data table (format might change slightly)
+- Every year I have to change slightly the arguments for the `readxl` function to import the demographic data table. An easy way to do this is use the **File > Import Dataset > From Excel...** option in Rstudio to figure out what works.
 - Tidy up by removing old raw data files

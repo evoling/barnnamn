@@ -1,9 +1,6 @@
-library(ggplot2)
-library(dplyr)
+library(tidyverse)
 library(devtools)
 library(readxl)
-library(testthat)
-library(tidyr)
 # This file creates the rData binary in the data directory
 
 # Excel files from the Swedish Central Statistical Bureau, SCB
@@ -37,19 +34,10 @@ barnnamn <- bind_rows(girls, boys) %>%
 #     region: riket
 #     moderns ålder: (no selection)
 #     kön: män, kvinnor
-#     år: 1998 to 2019
-totals <- read_excel("data-raw/BE0101E2_20201213-170726.xlsx",
-                     col_types = c("skip", "skip", "skip",
-                                   "text", "numeric", "numeric",
-                                   "numeric", "numeric", "numeric",
-                                   "numeric", "numeric", "numeric",
-                                   "numeric", "numeric", "numeric",
-                                   "numeric", "numeric", "numeric",
-                                   "numeric", "numeric", "numeric",
-                                   "numeric", "numeric", "numeric",
-                                   "numeric", "numeric"), skip = 2,
-                     n_max = 2) %>%
-  pivot_longer(as.character(1998:2019), names_to="year", values_to="total") %>%
+#     år: 1998 to 2020
+totals <-  read_excel("data-raw/0000001H_20210225-152425.xlsx",
+                                        skip = 1, n_max = 3) %>%
+  pivot_longer(as.character(1998:2020), names_to="year", values_to="total") %>%
   rename(sex=`...1`) %>%
   mutate(year=as.integer(year), total=as.integer(total)) %>%
   mutate(sex=if_else(sex=="kvinnor", "F", "M"))

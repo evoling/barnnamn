@@ -18,6 +18,6 @@ barnnamn_2021 <- barnnamn_2021 %>%
   mutate(prop=n/total) %>%
   select(year, sex, name, n, prop)
 
-barnnamn = barnnamn %>% rbind(barnnamn_2021)
+barnnamn = barnnamn %>% bind_row(barnnamn_2021)
 
 use_data(barnnamn, overwrite=TRUE)

@@ -11,12 +11,10 @@ For example,
   git checkout -b dev-2023
 ```
 
-## 2. Download excel files with name data
-
 Use the year that the branch was made (even though new data is from the year 
 previous)
 
-## 3. Download demographic data
+## 2. Download excel files with name data
 
 The files should be available from the [SCB 
 website](http://www.scb.se/hitta-statistik/statistik-efter-amne/befolkning/amnesovergripande-statistik/namnstatistik/). 

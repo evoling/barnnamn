@@ -8,7 +8,7 @@ Steps for updating the barnnamn library for a new year.
 
 For example, 
 ```
-  git checkout -b dev-2020
+  git checkout -b dev-2023
 ```
 
 Use the year that the branch was made (even though new data is from the year 

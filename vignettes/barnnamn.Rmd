@@ -27,9 +27,9 @@ In the following example we annotate each dataset with its country of origin, jo
 barnnamn$country <- "Sweden"
 babynames$country <- "USA"
 
-# range where both datasets have data
+# start where both datasets have data, end at most recent year
 start_year <- max(min(babynames$year), min(barnnamn$year))
-end_year <- min(max(babynames$year), max(barnnamn$year))
+end_year <- max(c(babynames$year, barnnamn$year))
 
 # join the datasets, filter, and plot
 babynames %>% 

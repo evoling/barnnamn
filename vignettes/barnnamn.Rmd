@@ -32,14 +32,14 @@ start_year <- max(min(babynames$year), min(barnnamn$year))
 end_year <- max(c(babynames$year, barnnamn$year))
 
 # join the datasets, filter, and plot
-babynames %>% 
-  bind_rows(barnnamn) %>% 
+babynames %>%
+  bind_rows(barnnamn) %>%
   filter(year >= start_year, year <= end_year) %>%
   filter(name == "Anna", sex == "F") %>%
-  ggplot(aes(x = year, y = prop, linetype = country)) + 
+  ggplot(aes(x = year, y = prop, linetype = country)) +
   geom_line() +
-  theme(legend.justification = c(1, 1), 
-        legend.position = c(0.95, 0.95),  
+  theme(legend.justification = c(1, 1),
+        legend.position = c(0.95, 0.95),
         legend.background = element_blank(),
         legend.key = element_blank()) +
   labs(title="Girls named Anna")

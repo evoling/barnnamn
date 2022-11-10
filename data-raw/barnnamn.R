@@ -4,7 +4,7 @@ library(devtools)
 
 # From the 2022 publication of data, names from 2004 onwards are available when
 # n >= 2; in this release we filter for n >= 10 for backwards compatibility
-barnnamn_2021 = read_tsv("namestats-2022.tsv") %>%
+barnnamn_2021 <- read_tsv("namestats-2022.tsv") %>%
   mutate(year=2021) %>%
   mutate(sex=if_else(sex=="flickor", "F", "M")) %>%
   select(year, sex, name, n) %>%
@@ -18,6 +18,6 @@ barnnamn_2021 <- barnnamn_2021 %>%
   mutate(prop=n/total) %>%
   select(year, sex, name, n, prop)
 
-barnnamn = barnnamn %>% bind_row(barnnamn_2021)
+barnnamn <- barnnamn %>% bind_row(barnnamn_2021)
 
 use_data(barnnamn, overwrite=TRUE)

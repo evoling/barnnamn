@@ -14,18 +14,21 @@ For example,
 Use the year that the branch was made (even though new data is from the year 
 previous)
 
-## 2. Download excel files with name data
+## 2. Download files with name data
 
 The files should be available from the [SCB 
-website](http://www.scb.se/hitta-statistik/statistik-efter-amne/befolkning/amnesovergripande-statistik/namnstatistik/). 
+website](http://www.scb.se/hitta-statistik/statistik-efter-amne/befolkning/amnesovergripande-statistik/namnstatistik/), 
+following the links to *Nyfödda*, then *Nyfödda, tilltalsnamn efter 
+namngivningsår och kön. År 1998 - 2022*
 
-In 2019–2021 there were two files, one for male names, one for female names. 
-The names for the 2019 data were `be0001namntab11_2019.xlsx` (girls' names) and 
-`be0001namntab12_2019.xlsx` (boys' names). These were a little inconsistent 
-from year to year (underscore vs. hyphen, etc.). In 2022 the format changed and 
-the boys' and girls' names could be downloaded in a single search. With a bit 
-of manual fiddling I got this data into tab-delimited utf-8 format, with 
-headers name, sex, count. File is saved as `data-raw/namestats-2022.tsv`.
+In 2023 there was a limit to downloads of 150000 records. Just the 2022 data 
+was 26270 records, so the workflow adds the current years data to the preexisting data files, rather than downloading everything afresh.
+The data was downloaded as `tabbavgränsad utan rubrik` (tab delimited without 
+header) and converted to utf-8 using the standard unix tool:
+
+```
+iconv -f iso-8859-1 -t utf-8 000004F5_20230427-104949.csv > namestats-2023.tsv
+```
 
 ## 3. Update data-raw/barnnamn.R
 

@@ -45,5 +45,5 @@ babynames %>%
   labs(title="Girls named Anna")
 ```
 
-The Swedish names data comes from the Statistiska centralbyrån (Central Statistical Bureau), which provides data from 1998 to 2020. Scripts to process the downloaded data can be found in the [source repository](https://github.com/evoling/barnnamn/) for this package 
+The Swedish names data comes from the Statistiska centralbyrån (Central Statistical Bureau), which provides data from 1998 to 2022. Scripts to process the downloaded data can be found in the [source repository](https://github.com/evoling/barnnamn/) for this package 
 

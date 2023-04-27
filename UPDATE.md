@@ -27,7 +27,7 @@ the boys' and girls' names could be downloaded in a single search. With a bit
 of manual fiddling I got this data into tab-delimited utf-8 format, with 
 headers name, sex, count. File is saved as `data-raw/namestats-2022.tsv`.
 
-##3. Update data-raw/barnnamn.R
+## 3. Update data-raw/barnnamn.R
 
 - Pay attention to changes in filename and format. The `use_data` function 
   recreates `data/barnnamn.rda`
